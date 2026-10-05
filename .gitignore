@@ -1,0 +1,7 @@
+# Données locales (base SQLite, verrou d'installation)
+data/*
+!data/.htaccess
+# Photos envoyées depuis l'administration
+uploads/*
+!uploads/.htaccess
+.DS_Store
