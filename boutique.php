@@ -2,7 +2,7 @@
 require __DIR__ . '/includes/bootstrap.php';
 
 $activePage = !empty($_GET['promo']) ? 'promos' : 'boutique';
-$categories = get_categories();
+$categories = public_categories();
 
 $catSlug = (string) ($_GET['cat'] ?? '');
 $q       = trim((string) ($_GET['q'] ?? ''));

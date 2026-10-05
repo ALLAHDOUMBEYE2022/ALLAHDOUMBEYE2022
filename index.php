@@ -2,11 +2,12 @@
 require __DIR__ . '/includes/bootstrap.php';
 
 $activePage = 'accueil';
-$categories = get_categories();
+$categories = public_categories();
 $featured = db_all(product_query() . ' WHERE p.active = 1 AND p.featured = 1 ORDER BY p.created_at DESC, p.id DESC LIMIT 8');
 $promos = db_all(product_query() . ' WHERE p.active = 1 AND p.old_price > p.price AND p.stock > 0
                                      ORDER BY (p.old_price - p.price) * 1.0 / p.old_price DESC LIMIT 4');
-$bestSellers = db_all(product_query() . ' WHERE p.active = 1 AND p.stock > 0 ORDER BY p.sales DESC LIMIT 4');
+$bestSellers = db_all(product_query() . ' WHERE p.active = 1 AND p.stock > 0 AND p.sales > 0 ORDER BY p.sales DESC LIMIT 4');
+$heroProduct = db_one(product_query() . ' WHERE p.active = 1 AND p.stock > 0 AND p.old_price > p.price ORDER BY p.featured DESC, p.id LIMIT 1');
 $services = db_all('SELECT * FROM services WHERE active = 1 ORDER BY sort_order LIMIT 6');
 
 require __DIR__ . '/includes/header.php';
@@ -15,10 +16,10 @@ require __DIR__ . '/includes/header.php';
 <section class="hero">
     <div class="container hero-grid">
         <div class="hero-text">
-            <span class="eyebrow">N°1 de l'informatique à N'Djamena</span>
-            <h1>Le bon ordinateur, <span class="hl">au meilleur prix</span>, livré chez vous.</h1>
-            <p>Portables, PC de bureau, imprimantes et accessoires neufs ou reconditionnés — avec installation,
-                garantie et un atelier de réparation à votre service.</p>
+            <span class="eyebrow">Ordinateurs · Accessoires · Service</span>
+            <h1>Qualité, performance <span class="hl">au meilleur prix</span>.</h1>
+            <p>PC portables neufs et reconditionnés — Dell, HP, Lenovo — pour étudiants, professionnels et entreprises,
+                avec maintenance, formation et coaching informatique à Chagoua, N'Djamena.</p>
             <div class="hero-cta">
                 <a href="boutique.php" class="btn btn-accent btn-lg">Voir la boutique</a>
                 <a href="services.php" class="btn btn-ghost btn-lg">Nos services</a>
@@ -26,11 +27,17 @@ require __DIR__ . '/includes/header.php';
             <ul class="hero-points">
                 <li>✔ Paiement à la livraison</li>
                 <li>✔ Airtel & Moov Money</li>
-                <li>✔ <?= e(WARRANTY_TEXT) ?></li>
+                <li>✔ Conseil gratuit sur WhatsApp</li>
             </ul>
         </div>
         <div class="hero-visual">
-            <img src="assets/img/hero.svg" alt="Ordinateurs et accessoires MaxiTech" width="520" height="420">
+            <?php if ($heroProduct && $heroProduct['image']): ?>
+                <a href="produit.php?slug=<?= e(rawurlencode($heroProduct['slug'])) ?>" class="hero-promo">
+                    <img src="<?= e(product_image($heroProduct)) ?>" alt="<?= e($heroProduct['name']) ?> en promotion à <?= e(money($heroProduct['price'])) ?>" width="460" height="460">
+                </a>
+            <?php else: ?>
+                <img src="assets/img/hero.svg" alt="Ordinateurs MaxiTech" width="520" height="420">
+            <?php endif; ?>
         </div>
     </div>
 </section>
@@ -88,7 +95,7 @@ require __DIR__ . '/includes/header.php';
     <div class="container cta-band-inner">
         <div>
             <h2>Votre ordinateur est en panne ?</h2>
-            <p>Diagnostic gratuit, devis avant intervention, réparation rapide en atelier ou à domicile.</p>
+            <p>Décrivez la panne : nous vous rappelons rapidement avec un diagnostic et un devis.</p>
         </div>
         <div class="cta-band-actions">
             <a href="services.php#demande" class="btn btn-accent btn-lg">Demander une intervention</a>
@@ -131,14 +138,15 @@ require __DIR__ . '/includes/header.php';
     <div class="container">
         <div class="section-head"><h2>Pourquoi choisir <?= e(SITE_NAME) ?> ?</h2></div>
         <div class="why-grid">
-            <div class="why-item"><span>💰</span><h3>Prix compétitifs</h3><p>Des prix négociés directement auprès de nos fournisseurs, et des promos chaque mois.</p></div>
-            <div class="why-item"><span>✅</span><h3>Matériel testé</h3><p>Chaque appareil est contrôlé, configuré et prêt à l'emploi avant la livraison.</p></div>
+            <div class="why-item"><span>💰</span><h3>Prix compétitifs</h3><p>Des prix étudiés et des promotions régulières sur nos ordinateurs.</p></div>
+            <div class="why-item"><span>✅</span><h3>Matériel testé</h3><p>Chaque ordinateur est contrôlé et configuré avant la vente : prêt à l'emploi.</p></div>
             <div class="why-item"><span>🤝</span><h3>Conseil honnête</h3><p>Nous vous orientons vers l'appareil adapté à votre budget et à vos besoins réels.</p></div>
-            <div class="why-item"><span>🔧</span><h3>Après-vente sur place</h3><p>Un atelier et des techniciens à N'Djamena pour vous accompagner dans la durée.</p></div>
+            <div class="why-item"><span>🎓</span><h3>Formation & coaching</h3><p>Maintenance, formation et coaching pour bien utiliser votre ordinateur dans la durée.</p></div>
         </div>
     </div>
 </section>
 
+<?php if (TESTIMONIALS): ?>
 <section class="section section-alt">
     <div class="container">
         <div class="section-head"><h2>Ils nous font confiance</h2></div>
@@ -153,5 +161,6 @@ require __DIR__ . '/includes/header.php';
         </div>
     </div>
 </section>
+<?php endif; ?>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

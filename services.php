@@ -90,7 +90,7 @@ require __DIR__ . '/includes/header.php';
 <section class="section section-alt" id="demande">
     <div class="container narrow">
         <div class="section-head center"><h2>Demander une intervention ou un devis</h2></div>
-        <p class="center muted">Réponse en moins de 2 heures pendant nos horaires d'ouverture. Diagnostic gratuit en atelier.</p>
+        <p class="center muted">Nous vous rappelons rapidement pour fixer un rendez-vous et vous donner un devis.</p>
         <form method="post" action="services.php#demande" class="form card">
             <?= csrf_field() ?>
             <?php foreach ($errors as $err): ?><div class="alert alert-error"><?= e($err) ?></div><?php endforeach; ?>

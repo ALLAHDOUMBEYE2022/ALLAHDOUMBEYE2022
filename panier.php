@@ -131,12 +131,14 @@ require __DIR__ . '/includes/header.php';
                         <dt class="grand">Total</dt><dd class="grand"><?= e(money($totals['total'])) ?></dd>
                     </dl>
 
+                    <?php if (COUPONS): ?>
                     <form method="post" class="coupon-form">
                         <?= csrf_field() ?>
                         <input type="hidden" name="action" value="coupon">
                         <input type="text" name="coupon" placeholder="Code promo" value="<?= e($totals['coupon'] ?? '') ?>" aria-label="Code promo">
                         <button class="btn btn-outline" type="submit">Appliquer</button>
                     </form>
+                    <?php endif; ?>
 
                     <a href="commande.php" class="btn btn-accent btn-lg btn-block">Passer la commande →</a>
                     <p class="muted small">Paiement à la livraison, Airtel Money ou Moov Money.</p>

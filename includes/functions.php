@@ -83,8 +83,14 @@ function render_flash(): string
 // ---------------------------------------------------------------------------
 function product_image(array $product, string $prefix = ''): string
 {
-    if (!empty($product['image']) && is_file(UPLOAD_DIR . '/' . basename($product['image']))) {
-        return $prefix . 'uploads/' . rawurlencode(basename($product['image']));
+    $image = (string) ($product['image'] ?? '');
+    // Photos livrées avec le site (catalogue initial).
+    if (str_starts_with($image, 'assets/img/produits/') && is_file(ROOT_PATH . '/' . $image)) {
+        return $prefix . 'assets/img/produits/' . rawurlencode(basename($image));
+    }
+    // Photos envoyées depuis l'administration.
+    if ($image !== '' && is_file(UPLOAD_DIR . '/' . basename($image))) {
+        return $prefix . 'uploads/' . rawurlencode(basename($image));
     }
     $icon = preg_replace('/[^a-z0-9-]/', '', $product['category_icon'] ?? '') ?: 'accessoire';
     return $prefix . 'assets/img/' . $icon . '.svg';
@@ -108,6 +114,17 @@ function get_categories(): array
 {
     return db_all('SELECT c.*, (SELECT COUNT(*) FROM products p WHERE p.category_id = c.id AND p.active = 1) AS total
                    FROM categories c ORDER BY c.sort_order, c.name');
+}
+
+/** Catégories affichées aux visiteurs : uniquement celles qui contiennent des produits. */
+function public_categories(): array
+{
+    return array_values(array_filter(get_categories(), fn($c) => (int) $c['total'] > 0));
+}
+
+function phone_link(string $phone): string
+{
+    return 'tel:' . preg_replace('/[^0-9+]/', '', $phone);
 }
 
 function stock_label(int $stock): string

@@ -50,13 +50,14 @@ require __DIR__ . '/includes/header.php';
 <section class="section">
     <div class="container contact-layout">
         <div class="contact-cards">
-            <a class="contact-card" href="tel:<?= e(str_replace(' ', '', SITE_PHONE)) ?>"><span>📞</span><div><strong>Téléphone</strong><?= e(SITE_PHONE) ?></div></a>
+            <a class="contact-card" href="<?= e(phone_link(SITE_PHONE)) ?>"><span>📞</span><div><strong>Appel, WhatsApp, SMS</strong><?= e(SITE_PHONE) ?></div></a>
+            <?php if (SITE_PHONE_2): ?><a class="contact-card" href="<?= e(phone_link(SITE_PHONE_2)) ?>"><span>📱</span><div><strong>Appel, WhatsApp, SMS</strong><?= e(SITE_PHONE_2) ?></div></a><?php endif; ?>
             <a class="contact-card" href="<?= e(whatsapp_link()) ?>" target="_blank" rel="noopener"><span>💬</span><div><strong>WhatsApp</strong>Réponse rapide</div></a>
-            <a class="contact-card" href="mailto:<?= e(SITE_EMAIL) ?>"><span>✉️</span><div><strong>E-mail</strong><?= e(SITE_EMAIL) ?></div></a>
+            <?php if (SITE_EMAIL): ?><a class="contact-card" href="mailto:<?= e(SITE_EMAIL) ?>"><span>✉️</span><div><strong>E-mail</strong><?= e(SITE_EMAIL) ?></div></a><?php endif; ?>
             <div class="contact-card"><span>📍</span><div><strong>Boutique & atelier</strong><?= e(SITE_ADDRESS) ?></div></div>
             <div class="contact-card"><span>🕗</span><div><strong>Horaires</strong><?= e(SITE_HOURS) ?></div></div>
             <iframe class="map" title="Plan d'accès" loading="lazy"
-                    src="https://maps.google.com/maps?q=<?= e(rawurlencode(SITE_ADDRESS)) ?>&output=embed"></iframe>
+                    src="https://maps.google.com/maps?q=<?= e(rawurlencode(SITE_MAP_QUERY)) ?>&output=embed"></iframe>
         </div>
 
         <form method="post" class="form card">

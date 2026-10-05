@@ -2,7 +2,8 @@
 require __DIR__ . '/_init.php';
 require_admin();
 
-const CATEGORY_ICONS = ['portable' => 'Ordinateur portable', 'bureau' => 'Ordinateur de bureau', 'imprimante' => 'Imprimante',
+const CATEGORY_ICONS = ['portable' => 'Ordinateur portable', 'tactile' => 'PC tactile / 2-en-1', 'pro' => 'PC professionnel',
+    'premium' => 'PC haut de gamme', 'bureau' => 'Ordinateur de bureau', 'imprimante' => 'Imprimante',
     'accessoire' => 'Accessoires', 'stockage' => 'Stockage', 'reseau' => 'Réseau'];
 
 if (is_post()) {

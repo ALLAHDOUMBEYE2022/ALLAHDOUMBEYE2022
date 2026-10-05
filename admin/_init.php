@@ -48,13 +48,13 @@ function admin_header(string $title, string $active = ''): void
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow">
     <title><?= e($title) ?> — Admin <?= e(SITE_NAME) ?></title>
-    <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="../assets/img/favicon.png" type="image/png">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
 <body class="admin">
 <aside class="admin-sidebar">
-    <a href="index.php" class="logo"><span class="logo-mark">M</span><?= e(SITE_NAME) ?></a>
+    <a href="index.php" class="logo logo-admin"><img src="../assets/img/logo-emblem.png" alt="" width="44" height="38"><?= e(SITE_NAME) ?></a>
     <nav>
         <?php foreach ($menu as $key => [$icon, $label]): ?>
             <a href="<?= e($key) ?>.php" class="<?= $active === $key ? 'active' : '' ?>">
@@ -132,7 +132,7 @@ function handle_image_upload(string $field, array &$errors): ?string
 
 function delete_upload(?string $name): void
 {
-    if ($name && is_file(UPLOAD_DIR . '/' . basename($name))) {
+    if ($name && !str_starts_with($name, 'assets/') && is_file(UPLOAD_DIR . '/' . basename($name))) {
         @unlink(UPLOAD_DIR . '/' . basename($name));
     }
 }

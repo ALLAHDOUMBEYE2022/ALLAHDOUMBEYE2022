@@ -11,7 +11,7 @@ $navItems = [
     'apropos'  => ['apropos.php', 'À propos'],
     'contact'  => ['contact.php', 'Contact'],
 ];
-$headerCategories = get_categories();
+$headerCategories = public_categories();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -24,7 +24,9 @@ $headerCategories = get_categories();
     <meta property="og:description" content="<?= e($pageDescription) ?>">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#0a1f44">
-    <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="assets/img/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/img/favicon.png">
+    <meta property="og:image" content="assets/img/logo-original.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -44,7 +46,7 @@ $headerCategories = get_categories();
 
 <div class="topbar">
     <div class="container">
-        <span>📞 <a href="tel:<?= e(str_replace(' ', '', SITE_PHONE)) ?>"><?= e(SITE_PHONE) ?></a></span>
+        <span>📞 <a href="<?= e(phone_link(SITE_PHONE)) ?>"><?= e(SITE_PHONE) ?></a><?php if (SITE_PHONE_2): ?> · <a href="<?= e(phone_link(SITE_PHONE_2)) ?>"><?= e(SITE_PHONE_2) ?></a><?php endif; ?> <span class="hide-sm">(Appel, WhatsApp, SMS)</span></span>
         <span class="hide-sm">📍 <?= e(SITE_ADDRESS) ?></span>
         <span class="hide-sm">🕗 <?= e(SITE_HOURS) ?></span>
     </div>
@@ -52,10 +54,13 @@ $headerCategories = get_categories();
 
 <header class="site-header">
     <div class="container header-inner">
-        <a href="index.php" class="logo"><span class="logo-mark">M</span><?= e(SITE_NAME) ?></a>
+        <a href="index.php" class="logo" aria-label="<?= e(SITE_NAME) ?> — accueil">
+            <img src="assets/img/logo-emblem.png" alt="" class="logo-emblem" width="58" height="50">
+            <img src="assets/img/logo-texte.png" alt="<?= e(SITE_NAME) ?>" class="logo-text" width="170" height="37">
+        </a>
 
         <form class="search" action="boutique.php" method="get" role="search">
-            <input type="search" name="q" placeholder="Rechercher un ordinateur, une imprimante, un accessoire…"
+            <input type="search" name="q" placeholder="Rechercher un ordinateur : Dell, HP, Lenovo, tactile…"
                    value="<?= e($_GET['q'] ?? '') ?>" aria-label="Rechercher">
             <button type="submit" aria-label="Lancer la recherche">🔍</button>
         </form>

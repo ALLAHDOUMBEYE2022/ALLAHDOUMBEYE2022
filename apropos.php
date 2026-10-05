@@ -2,10 +2,11 @@
 require __DIR__ . '/includes/bootstrap.php';
 
 $faq = [
-    'Livrez-vous partout au Tchad ?' => 'Nous livrons à N\'Djamena sous 24 h (souvent le jour même). Pour les autres villes, nous expédions par transporteur : contactez-nous sur WhatsApp pour connaître le délai et le tarif.',
+    'Où se trouve la boutique ?' => 'À Chagoua, sur l\'axe CA7, au sein du Centre FIDETECHL FORMATION (N\'Djamena). Vous pouvez venir voir et essayer les ordinateurs sur place.',
+    'Livrez-vous ?' => 'Oui, à N\'Djamena. Pour les autres villes, contactez-nous sur WhatsApp pour connaître le délai et le tarif d\'expédition.',
     'Comment payer ma commande ?' => 'En espèces à la livraison, par Airtel Money ou Moov Money, ou directement en boutique. Pour les entreprises, le paiement par virement est possible sur facture.',
-    'Les ordinateurs reconditionnés sont-ils fiables ?' => 'Oui. Chaque appareil reconditionné est testé, nettoyé et équipé d\'un SSD si nécessaire. Il est vendu avec une garantie de 6 mois.',
-    'Que couvre la garantie ?' => 'La garantie couvre les pannes matérielles hors casse, oxydation et mauvaise utilisation. Le diagnostic et la réparation se font dans notre atelier à N\'Djamena.',
+    'Les ordinateurs reconditionnés sont-ils fiables ?' => 'Ce sont des modèles professionnels (Dell Latitude, HP EliteBook, Lenovo ThinkPad) réputés pour leur solidité. Chaque appareil est testé et configuré avant la vente.',
+    'Y a-t-il une garantie ?' => 'Les conditions de garantie dépendent de l\'appareil (neuf ou reconditionné). Demandez-les au moment de l\'achat : elles vous sont toujours précisées.',
     'Installez-vous les logiciels ?' => 'Oui, l\'installation des logiciels essentiels (navigateur, lecteur PDF, antivirus, etc.) est offerte pour tout achat d\'ordinateur.',
     'Proposez-vous des prix pour les entreprises et écoles ?' => 'Oui, nous proposons des tarifs dégressifs pour les achats en quantité et des contrats de maintenance. Demandez un devis via la page Contact.',
 ];
@@ -34,10 +35,10 @@ require __DIR__ . '/includes/header.php';
             <a href="boutique.php" class="btn btn-primary">Découvrir la boutique</a>
         </div>
         <div class="stats-grid">
-            <div class="stat"><strong>2 000+</strong><span>clients satisfaits</span></div>
-            <div class="stat"><strong>1 500+</strong><span>ordinateurs réparés</span></div>
-            <div class="stat"><strong>80+</strong><span>entreprises accompagnées</span></div>
-            <div class="stat"><strong>24 h</strong><span>livraison à N'Djamena</span></div>
+            <div class="stat"><strong>💻</strong><span>PC neufs & reconditionnés Dell, HP, Lenovo</span></div>
+            <div class="stat"><strong>🛠️</strong><span>Maintenance informatique</span></div>
+            <div class="stat"><strong>🎓</strong><span>Formation informatique</span></div>
+            <div class="stat"><strong>🤝</strong><span>Coaching personnalisé</span></div>
         </div>
     </div>
 </section>

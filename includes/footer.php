@@ -3,21 +3,21 @@
 <section class="trust-strip">
     <div class="container trust-grid">
         <div><strong>🚚 Livraison rapide</strong><span>À N'Djamena, offerte dès <?= e(money(FREE_DELIVERY_FROM)) ?></span></div>
-        <div><strong>🛡️ <?= e(WARRANTY_TEXT) ?></strong><span>Produits authentiques et testés</span></div>
+        <div><strong>🛡️ <?= e(WARRANTY_TEXT) ?></strong><span>Neufs et reconditionnés, contrôlés par nos techniciens</span></div>
         <div><strong>💳 Paiement facile</strong><span>Espèces à la livraison ou Mobile Money</span></div>
-        <div><strong>🧑‍🔧 SAV local</strong><span>Techniciens qualifiés dans notre atelier</span></div>
+        <div><strong>🎓 Formation & coaching</strong><span>Maintenance, formation et accompagnement</span></div>
     </div>
 </section>
 
 <footer class="site-footer">
     <div class="container footer-grid">
         <div>
-            <a href="index.php" class="logo"><span class="logo-mark">M</span><?= e(SITE_NAME) ?></a>
+            <a href="index.php" class="footer-logo"><img src="assets/img/logo-complet.png" alt="<?= e(SITE_NAME) ?>" width="220" height="154"></a>
             <p><?= e(SITE_TAGLINE) ?>. Votre partenaire informatique de confiance pour les particuliers, étudiants et entreprises.</p>
             <div class="socials">
-                <a href="<?= e(SITE_FACEBOOK) ?>" target="_blank" rel="noopener" aria-label="Facebook">f</a>
-                <a href="<?= e(SITE_INSTAGRAM) ?>" target="_blank" rel="noopener" aria-label="Instagram">◎</a>
-                <a href="<?= e(SITE_TIKTOK) ?>" target="_blank" rel="noopener" aria-label="TikTok">♪</a>
+                <?php if (SITE_FACEBOOK): ?><a href="<?= e(SITE_FACEBOOK) ?>" target="_blank" rel="noopener" aria-label="Facebook">f</a><?php endif; ?>
+                <?php if (SITE_INSTAGRAM): ?><a href="<?= e(SITE_INSTAGRAM) ?>" target="_blank" rel="noopener" aria-label="Instagram">◎</a><?php endif; ?>
+                <?php if (SITE_TIKTOK): ?><a href="<?= e(SITE_TIKTOK) ?>" target="_blank" rel="noopener" aria-label="TikTok">♪</a><?php endif; ?>
                 <a href="<?= e(whatsapp_link()) ?>" target="_blank" rel="noopener" aria-label="WhatsApp">✆</a>
             </div>
         </div>
@@ -47,7 +47,8 @@
                 <input type="email" name="email" placeholder="Votre e-mail" required aria-label="Votre e-mail">
                 <button class="btn btn-accent" type="submit">OK</button>
             </form>
-            <p class="footer-contact">📞 <?= e(SITE_PHONE) ?><br>✉️ <?= e(SITE_EMAIL) ?><br>📍 <?= e(SITE_ADDRESS) ?></p>
+            <p class="footer-contact">📞 <?= e(SITE_PHONE) ?><?= SITE_PHONE_2 ? ' / ' . e(SITE_PHONE_2) : '' ?><br>
+                <?php if (SITE_EMAIL): ?>✉️ <?= e(SITE_EMAIL) ?><br><?php endif; ?>📍 <?= e(SITE_ADDRESS) ?></p>
         </div>
     </div>
     <div class="footer-bottom">

@@ -22,16 +22,25 @@ Site web dynamique (PHP + MySQL) de **MaxiTech**, boutique d'ordinateurs, d'acce
 - **Demandes de service**, **messages**, **abonnés newsletter** (export Excel/CSV).
 - Gestion des comptes administrateurs (changement de mot de passe, comptes employés).
 
-## Installation chez un hébergeur (o2switch, Hostinger, LWS…) ou en local (XAMPP / WAMP)
+## Installation
 
-1. Créez une base de données MySQL (ex. `maxitech`) depuis le panneau de votre hébergeur ou phpMyAdmin.
-2. Ouvrez `config.php` et renseignez `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASS`.
-3. Envoyez tous les fichiers sur le serveur (dossier `public_html` ou `htdocs`).
-4. Ouvrez `https://votre-site/install.php` : choisissez l'identifiant et le mot de passe administrateur, cochez « données de démonstration » si vous le souhaitez.
-5. **Supprimez `install.php`** du serveur une fois l'installation terminée.
-6. Connectez-vous sur `https://votre-site/admin/`.
+**Mise en ligne gratuite pas à pas : voir [`GUIDE-MISE-EN-LIGNE.md`](GUIDE-MISE-EN-LIGNE.md) (InfinityFree).**
 
-Prérequis : PHP 8.1 ou plus récent avec PDO MySQL (présent chez tous les hébergeurs courants). Les dossiers `uploads/` et `data/` doivent être accessibles en écriture.
+Sur n'importe quel hébergeur PHP + MySQL (ou en local avec XAMPP / WAMP) :
+
+1. Créez une base de données MySQL vide.
+2. Envoyez tous les fichiers sur le serveur (dossier `htdocs` ou `public_html`).
+3. Ouvrez `https://votre-site/install.php` : saisissez les identifiants MySQL (étape 1), puis créez le compte administrateur (étape 2).
+   Les identifiants sont enregistrés dans `data/config.local.php` (protégé, non versionné) : inutile de modifier `config.php`.
+4. **Supprimez `install.php`** du serveur, puis connectez-vous sur `https://votre-site/admin/`.
+
+Prérequis : PHP 8.0 ou plus récent avec PDO MySQL. Les dossiers `uploads/` et `data/` doivent être accessibles en écriture.
+
+## Catalogue initial
+
+L'installateur importe les 17 ordinateurs des affiches MaxiTech (4 catégories : promotions, tactiles & 2-en-1,
+professionnels, haut de gamme) et 6 services (maintenance, nettoyage, installation, formation, coaching, conseil).
+Les stocks sont fixés à 5 par défaut et les services sont affichés « sur devis » : ajustez-les depuis l'administration.
 
 ### Test rapide sans MySQL
 ```bash
@@ -45,7 +54,7 @@ Tout se règle dans **`config.php`** :
 
 | Réglage | Rôle |
 |---|---|
-| `SITE_PHONE`, `SITE_WHATSAPP`, `SITE_EMAIL`, `SITE_ADDRESS`, `SITE_HOURS` | Coordonnées affichées partout |
+| `SITE_PHONE`, `SITE_PHONE_2`, `SITE_WHATSAPP`, `SITE_EMAIL`, `SITE_ADDRESS`, `SITE_HOURS` | Coordonnées affichées partout |
 | `SITE_FACEBOOK`, `SITE_INSTAGRAM`, `SITE_TIKTOK` | Liens vers les réseaux sociaux |
 | `DELIVERY_FEE`, `FREE_DELIVERY_FROM` | Frais de livraison et seuil de gratuité |
 | `MOBILE_MONEY` | Numéros Airtel Money / Moov Money |

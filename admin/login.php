@@ -30,12 +30,12 @@ if (is_post()) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow">
     <title>Connexion — Admin <?= e(SITE_NAME) ?></title>
-    <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="../assets/img/favicon.png" type="image/png">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body class="auth-page">
 <div class="auth-card">
-    <div class="logo"><span class="logo-mark">M</span><?= e(SITE_NAME) ?></div>
+    <img src="../assets/img/logo-complet.png" alt="<?= e(SITE_NAME) ?>" class="auth-logo">
     <h1>Espace administration</h1>
     <?php if ($error): ?><div class="alert alert-error"><?= e($error) ?></div><?php endif; ?>
     <form method="post" class="form">
